@@ -346,12 +346,12 @@ def run_GUI(computer=False):
 
     # Tkinter only works with GIFs
     HogGUI.IMAGES = {
-        1: PhotoImage(file='images/die1.gif'),
-        2: PhotoImage(file='images/die2.gif'),
-        3: PhotoImage(file='images/die3.gif'),
-        4: PhotoImage(file='images/die4.gif'),
-        5: PhotoImage(file='images/die5.gif'),
-        6: PhotoImage(file='images/die6.gif'),
+        1: PhotoImage(file='~/dev/courses/cs61a-2019/projects/Hog/images/die1.gif'),
+        2: PhotoImage(file='~/dev/courses/cs61a-2019/projects/Hog/images/die2.gif'),
+        3: PhotoImage(file='~/dev/courses/cs61a-2019/projects/Hog/images/die3.gif'),
+        4: PhotoImage(file='~/dev/courses/cs61a-2019/projects/Hog/images/die4.gif'),
+        5: PhotoImage(file='~/dev/courses/cs61a-2019/projects/Hog/images/die5.gif'),
+        6: PhotoImage(file='~/dev/courses/cs61a-2019/projects/Hog/images/die6.gif'),
     }
 
     app = HogGUI(root, computer)

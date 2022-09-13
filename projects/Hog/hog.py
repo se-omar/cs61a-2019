@@ -1,5 +1,6 @@
 """CS 61A Presents The Game of Hog."""
 
+from pickle import TRUE
 from dice import six_sided, four_sided, make_test_dice
 from ucb import main, trace, interact
 
@@ -21,7 +22,15 @@ def roll_dice(num_rolls, dice=six_sided):
     assert type(num_rolls) == int, 'num_rolls must be an integer.'
     assert num_rolls > 0, 'Must roll at least once.'
     # BEGIN PROBLEM 1
-    "*** YOUR CODE HERE ***"
+    sum = 0
+    is_one = False
+    while num_rolls > 0:
+        curr_dice = dice()
+        if(curr_dice == 1):
+            is_one = True
+        sum += curr_dice
+        num_rolls -= 1
+    return 1 if is_one else sum
     # END PROBLEM 1
 
 
