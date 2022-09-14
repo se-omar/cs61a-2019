@@ -76,7 +76,22 @@ def is_swap(player_score, opponent_score):
     Return whether the two scores should be swapped
     """
     # BEGIN PROBLEM 4
-    "*** YOUR CODE HERE ***"
+    if player_score < 10:
+        player_diff = player_score
+    elif player_score >= 10 and player_score < 100:
+        player_diff = player_score // 10
+    else:
+        player_diff = player_score // 100
+
+    if opponent_score < 10:
+        opponent_diff = opponent_score
+    elif opponent_score >= 10 and opponent_score < 100:
+        opponent_diff = opponent_score % 10
+    else:
+        opponent_diff = opponent_score % 100
+
+    return player_diff == opponent_diff
+
     # END PROBLEM 4
 
 
