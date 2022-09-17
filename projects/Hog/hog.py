@@ -136,17 +136,20 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
             score0 += take_turn(num_rolls, score1, dice)
             if is_swap(score0, score1):
                 score0, score1 = score1, score0
+            say = say(score0, score1)
+
         if player == 1:
             num_rolls = strategy1(score1, score0)
             score1 += take_turn(num_rolls, score0, dice)
             if is_swap(score1, score0):
                 score0, score1 = score1, score0
+            say = say(score0, score1)
+
         player = other(player)
 
     # END PROBLEM 5
     # (note that the indentation for the problem 6 prompt (***YOUR CODE HERE***) might be misleading)
     # BEGIN PROBLEM 6
-    "*** YOUR CODE HERE ***"
     # END PROBLEM 6
     return score0, score1
 
@@ -232,10 +235,23 @@ def announce_highest(who, previous_high=0, previous_score=0):
     """
     assert who == 0 or who == 1, 'The who argument should indicate a player.'
     # BEGIN PROBLEM 7
-    "*** YOUR CODE HERE ***"
+    def say(score0, score1):
+        curr_score = score0 if who == 0 else score1
+        curr_high = curr_score - previous_score
+        prev_high = previous_high
+        if curr_high > prev_high:
+            print(curr_high, "point(s)! That's the biggest gain yet for Player", who)
+            prev_high = curr_high
+        return announce_highest(who, prev_high, curr_score)
+
+    return say
     # END PROBLEM 7
-
-
+from dice import make_test_dice
+f0 = announce_highest(1) # Only announce Player 1 score gains
+f1 = f0(12, 0)
+f2 = f1(12, 10)
+f3 = f2(20, 10)
+f4 = f3(22, 20)
 #######################
 # Phase 3: Strategies #
 #######################
