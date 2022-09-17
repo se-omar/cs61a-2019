@@ -4,6 +4,8 @@ from pickle import TRUE
 from dice import six_sided, four_sided, make_test_dice
 from ucb import main, trace, interact
 
+import hog
+
 GOAL_SCORE = 100  # The goal of Hog is to score 100 points.
 
 ######################
@@ -54,7 +56,6 @@ def free_bacon(score):
 def take_turn(num_rolls, opponent_score, dice=six_sided):
     """Simulate a turn rolling NUM_ROLLS dice, which may be 0 (Free Bacon).
     Return the points scored for the turn by the current player.
-
     num_rolls:       The number of dice rolls that will be made.
     opponent_score:  The total score of the opponent.
     dice:            A function that simulates a single dice roll outcome.
@@ -91,7 +92,6 @@ def is_swap(player_score, opponent_score):
         opponent_diff = opponent_score % 100
 
     return player_diff == opponent_diff
-
     # END PROBLEM 4
 
 
@@ -130,7 +130,19 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
     """
     player = 0  # Which player is about to take a turn, 0 (first) or 1 (second)
     # BEGIN PROBLEM 5
-    "*** YOUR CODE HERE ***"
+    while score0 < goal and score1 < goal:
+        if player == 0:
+            num_rolls = strategy0(score0, score1)
+            score0 += take_turn(num_rolls, score1, dice)
+            if is_swap(score0, score1):
+                score0, score1 = score1, score0
+        if player == 1:
+            num_rolls = strategy1(score1, score0)
+            score1 += take_turn(num_rolls, score0, dice)
+            if is_swap(score1, score0):
+                score0, score1 = score1, score0
+        player = other(player)
+
     # END PROBLEM 5
     # (note that the indentation for the problem 6 prompt (***YOUR CODE HERE***) might be misleading)
     # BEGIN PROBLEM 6
@@ -245,7 +257,6 @@ def always_roll(n):
     def strategy(score, opponent_score):
         return n
     return strategy
-
 
 def make_averaged(fn, num_samples=1000):
     """Return a function that returns the average value of FN when called.
