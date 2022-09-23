@@ -1,5 +1,6 @@
 """CS 61A Presents The Game of Hog."""
 
+from optparse import OptParseError
 from pickle import TRUE
 from dice import six_sided, four_sided, make_test_dice
 from ucb import main, trace, interact
@@ -245,13 +246,7 @@ def announce_highest(who, previous_high=0, previous_score=0):
         return announce_highest(who, prev_high, curr_score)
 
     return say
-    # END PROBLEM 7
-from dice import make_test_dice
-f0 = announce_highest(1) # Only announce Player 1 score gains
-f1 = f0(12, 0)
-f2 = f1(12, 10)
-f3 = f2(20, 10)
-f4 = f3(22, 20)
+
 #######################
 # Phase 3: Strategies #
 #######################
@@ -286,8 +281,15 @@ def make_averaged(fn, num_samples=1000):
     3.0
     """
     # BEGIN PROBLEM 8
-    "*** YOUR CODE HERE ***"
-    # END PROBLEM 8
+    def get_avg(*args):
+        i = 0
+        sum = 0
+        while i < num_samples:
+            sum = sum + fn(*args)
+            i += 1
+        return sum / num_samples
+    return get_avg
+   # END PROBLEM 8
 
 
 def max_scoring_num_rolls(dice=six_sided, num_samples=1000):
@@ -300,7 +302,16 @@ def max_scoring_num_rolls(dice=six_sided, num_samples=1000):
     1
     """
     # BEGIN PROBLEM 9
-    "*** YOUR CODE HERE ***"
+    num_rolls = 1
+    max_rolls = 1
+    max_score = 0
+    while num_rolls < 11:
+        avg = make_averaged(roll_dice, num_samples)(num_rolls, dice)
+        if avg > max_score:
+            max_score = avg
+            max_rolls = num_rolls
+        num_rolls += 1
+    return max_rolls
     # END PROBLEM 9
 
 
@@ -349,7 +360,9 @@ def bacon_strategy(score, opponent_score, margin=8, num_rolls=4):
     rolls NUM_ROLLS otherwise.
     """
     # BEGIN PROBLEM 10
-    return 4  # Replace this statement
+    if free_bacon(opponent_score) >= margin:
+        return 0
+    return num_rolls
     # END PROBLEM 10
 
 
@@ -359,7 +372,28 @@ def swap_strategy(score, opponent_score, margin=8, num_rolls=4):
     non-beneficial swap. Otherwise, it rolls NUM_ROLLS.
     """
     # BEGIN PROBLEM 11
-    return 4  # Replace this statement
+    bacon = free_bacon(opponent_score)
+    bacon_score = score + bacon
+    score_bigger_than_opp_case = bacon_score >= opponent_score and not is_swap(bacon_score, opponent_score)
+    score_less_than_opp_case = bacon_score < opponent_score and is_swap(bacon_score, opponent_score)
+    if is_swap(bacon_score, opponent_score) and bacon_score < opponent_score:
+        return 0
+    if bacon >= margin:
+        if score_bigger_than_opp_case or score_less_than_opp_case:
+            return 0
+        # if is_swap(bacon_score, opponent_score):
+        #     if bacon_score < opponent_score:
+        #         return 0
+        # if bacon_score > opponent_score and not is_swap(bacon_score, opponent_score):
+        #     return 0
+        # if bacon_score <= opponent_score:
+        #     return 0
+
+    # if opponent_score > score:
+    #     if bacon >= margin and is_swap(bacon_score, opponent_score) and bacon_score < opponent_score:
+    #         return 0
+
+    return num_rolls
     # END PROBLEM 11
 
 
