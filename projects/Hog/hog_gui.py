@@ -105,7 +105,6 @@ class HogGUI(Frame):
     """Tkinter GUI for Hog."""
 
     KILL = -9   # kill signal to stop a game
-
     #########################
     # Widget Initialization #
     #########################
