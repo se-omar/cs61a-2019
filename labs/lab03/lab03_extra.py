@@ -36,7 +36,15 @@ def gcd(a, b):
     >>> gcd(40, 40)
     40
     """
-    "*** YOUR CODE HERE ***"
+    if a == b:
+        return a
+    if b < a and a % b == 0:
+        return b
+    
+    if a < b and b % a == 0:
+        return a
+    else:
+        return gcd(b, a % b)
 
 def ten_pairs(n):
     """Return the number of ten-pairs within positive integer n.
