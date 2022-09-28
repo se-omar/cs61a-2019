@@ -10,7 +10,18 @@ def is_prime(n):
     >>> is_prime(521)
     True
     """
-    "*** YOUR CODE HERE ***"
+    if count_fact(n, 1) == 2:
+        return True
+    else:
+        return False
+
+def count_fact(n, i):
+    if i == n:
+        return 1
+    elif n % i == 0:
+        return 1 + count_fact(n, i + 1)
+    else:
+        return count_fact(n, i + 1)
 
 def gcd(a, b):
     """Returns the greatest common divisor of a and b.
