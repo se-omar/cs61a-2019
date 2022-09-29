@@ -1,5 +1,6 @@
 """ Optional problems for Lab 3 """
 
+
 def is_prime(n):
     """Returns True if n is a prime number and False otherwise.
 
@@ -15,6 +16,7 @@ def is_prime(n):
     else:
         return False
 
+
 def count_fact(n, i):
     if i == n:
         return 1
@@ -22,6 +24,7 @@ def count_fact(n, i):
         return 1 + count_fact(n, i + 1)
     else:
         return count_fact(n, i + 1)
+
 
 def gcd(a, b):
     """Returns the greatest common divisor of a and b.
@@ -40,11 +43,12 @@ def gcd(a, b):
         return a
     if b < a and a % b == 0:
         return b
-    
+
     if a < b and b % a == 0:
         return a
     else:
         return gcd(b, a % b)
+
 
 def ten_pairs(n):
     """Return the number of ten-pairs within positive integer n.
