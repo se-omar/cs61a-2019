@@ -108,6 +108,34 @@ test = {
         {
           'code': r"""
           >>> #
+          >>> # Use strategies
+          >>> # We recommend working this out turn-by-turn on a piece of paper.
+          >>> strat0 = lambda score, opponent: opponent % 10
+          >>> strat1 = lambda score, opponent: max((score // 10) - 4, 0)
+          >>> s0, s1 = hog.play(strat0, strat1, score0=71, score1=80, dice=always_seven)
+          >>> s0
+          108
+          >>> s1
+          81
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> import hog
+      >>> always_three = hog.make_test_dice(3)
+      >>> always_seven = hog.make_test_dice(7)
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> #
           >>> # Player 1 win
           >>> s0, s1 = hog.play(always(4), always(4), score0=87, score1=88, dice=always_three)
           >>> s0

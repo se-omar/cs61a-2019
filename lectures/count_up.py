@@ -5,4 +5,5 @@ def count_up(n):
         count_up(n - 1)
         print(n)
 
+
 count_up(50)

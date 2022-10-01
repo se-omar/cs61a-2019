@@ -7,50 +7,56 @@ test = {
         {
           'code': r"""
           >>> swap_strategy(9, 21, 8, 6)
-          0
+          962aea5f59fc55bd65ccacf4603c8f22
+          # locked
           """,
           'hidden': False,
-          'locked': False
+          'locked': True
         },
         {
           'code': r"""
           >>> swap_strategy(30, 54, 7, 6)
-          6
+          327b19ffebddf93982e1ad2a4a6486f4
+          # locked
           """,
           'hidden': False,
-          'locked': False
+          'locked': True
         },
         {
           'code': r"""
           >>> swap_strategy(37, 44, 8, 6)
-          0
+          962aea5f59fc55bd65ccacf4603c8f22
+          # locked
           """,
           'hidden': False,
-          'locked': False
+          'locked': True
         },
         {
           'code': r"""
           >>> swap_strategy(49, 45, 1, 6)
-          6
+          327b19ffebddf93982e1ad2a4a6486f4
+          # locked
           """,
           'hidden': False,
-          'locked': False
+          'locked': True
         },
         {
           'code': r"""
           >>> swap_strategy(36, 43, 10, 6)
-          6
+          327b19ffebddf93982e1ad2a4a6486f4
+          # locked
           """,
           'hidden': False,
-          'locked': False
+          'locked': True
         },
         {
           'code': r"""
           >>> swap_strategy(36, 43, 1, 6)
-          0
+          962aea5f59fc55bd65ccacf4603c8f22
+          # locked
           """,
           'hidden': False,
-          'locked': False
+          'locked': True
         },
         {
           'code': r"""
