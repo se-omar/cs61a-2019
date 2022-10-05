@@ -214,6 +214,7 @@ def pingpong(n):
     
     return pingpong_helper(1, 1, False, n)
 
+# recursive solution
 def pingpong_helper(count, curr_num, is_reverse, n):
     if count == n:
         return curr_num
