@@ -374,25 +374,10 @@ def swap_strategy(score, opponent_score, margin=8, num_rolls=4):
     # BEGIN PROBLEM 11
     bacon = free_bacon(opponent_score)
     bacon_score = score + bacon
-    score_bigger_than_opp_case = bacon_score >= opponent_score and not is_swap(bacon_score, opponent_score)
-    score_less_than_opp_case = bacon_score < opponent_score and is_swap(bacon_score, opponent_score)
     if is_swap(bacon_score, opponent_score) and bacon_score < opponent_score:
         return 0
-    if bacon >= margin:
-        if score_bigger_than_opp_case or score_less_than_opp_case:
-            return 0
-        # if is_swap(bacon_score, opponent_score):
-        #     if bacon_score < opponent_score:
-        #         return 0
-        # if bacon_score > opponent_score and not is_swap(bacon_score, opponent_score):
-        #     return 0
-        # if bacon_score <= opponent_score:
-        #     return 0
-
-    # if opponent_score > score:
-    #     if bacon >= margin and is_swap(bacon_score, opponent_score) and bacon_score < opponent_score:
-    #         return 0
-
+    if bacon >= margin and not is_swap(bacon_score, opponent_score):
+        return 0
     return num_rolls
     # END PROBLEM 11
 
