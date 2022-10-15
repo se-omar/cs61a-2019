@@ -2,6 +2,7 @@ LAB_SOURCE_FILE = "lab05.py"
 
 """ Lab 05: Trees and Proj2 Prep """
 
+
 def merge(lst1, lst2):
     """Merges two sorted lists.
     >>> merge([1], [2])
@@ -13,12 +14,15 @@ def merge(lst1, lst2):
     >>> merge([5, 7], [2, 4, 6])
     [2, 4, 5, 6, 7]
     """
-    if not lst1 or not lst2:
-        return []
+    if not lst1:
+        return lst2
+    if not lst2:
+        return lst1
     elif lst1[0] < lst2[0]:
         return [lst1[0]] + merge(lst1[1:], lst2)
     else:
         return [lst2[0]] + merge(lst1, lst2[1:])
+
 
 def add_chars(w1, w2):
     """
@@ -47,6 +51,7 @@ def add_chars(w1, w2):
     """
     "*** YOUR CODE HERE ***"
 
+
 def acorn_finder(t):
     """Returns True if t contains a node with the value 'acorn' and
     False otherwise.
@@ -67,19 +72,24 @@ def acorn_finder(t):
     "*** YOUR CODE HERE ***"
 
 # Tree ADT
+
+
 def tree(label, branches=[]):
     """Construct a tree with the given label value and a list of branches."""
     for branch in branches:
         assert is_tree(branch), 'branches must be trees'
     return [label] + list(branches)
 
+
 def label(tree):
     """Return the label value of a tree."""
     return tree[0]
 
+
 def branches(tree):
     """Return the list of branches of the given tree."""
     return tree[1:]
+
 
 def is_tree(tree):
     """Returns True if the given tree is a tree, and False otherwise."""
@@ -90,11 +100,13 @@ def is_tree(tree):
             return False
     return True
 
+
 def is_leaf(tree):
     """Returns True if the given tree's list of branches is empty, and False
     otherwise.
     """
     return not branches(tree)
+
 
 def print_tree(t, indent=0):
     """Print a representation of this tree in which each node is
@@ -118,6 +130,7 @@ def print_tree(t, indent=0):
     print('  ' * indent + str(label(t)))
     for b in branches(t):
         print_tree(b, indent + 1)
+
 
 def copy_tree(t):
     """Returns a copy of t. Only for testing purposes.
