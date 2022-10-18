@@ -49,7 +49,12 @@ def add_chars(w1, w2):
     ...       ['For', 'While', 'Set', 'SetComp']) # Must use recursion
     True
     """
-    "*** YOUR CODE HERE ***"
+    if w1 == '':
+        return w2
+    if w1[0] == w2[0]:
+        return  add_chars(w1[1:], w2[1:])
+    return w2[0] + add_chars(w1, w2[1:])
+        
 
 
 def acorn_finder(t):
@@ -69,7 +74,22 @@ def acorn_finder(t):
     >>> acorn_finder(t)
     True
     """
-    "*** YOUR CODE HERE ***"
+    # if label(t) == 'acorn':
+    #     return True
+    if label(t) == 'acorn':
+        return True
+    for b in branches(t):
+        if acorn_finder(b):
+            return True
+    return False
+
+
+            
+
+
+        
+
+        
 
 # Tree ADT
 
