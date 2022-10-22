@@ -92,7 +92,8 @@ def taxicab(a, b):
     >>> taxicab(ess_a_bagel, times_square)
     9
     """
-    "*** YOUR CODE HERE ***"
+    return abs(street(a) - street(b)) + abs(avenue(a) - avenue(b))
+
 
 def flatten(lst):
     """Returns a flattened version of lst.
@@ -110,7 +111,12 @@ def flatten(lst):
     >>> x
     [[1, [1, 1]], 1, [1, 1]]
     """
-    "*** YOUR CODE HERE ***"
+    if not lst:
+        return lst
+    elif type(lst[0]) == list:
+        return flatten(lst[0]) + flatten(lst[1:])
+    return [lst[0]] + flatten(lst[1:])
+    # return [flatten(x) for x in lst]
 
 def replace_leaf(t, old, new):
     """Returns a new tree where every leaf value equal to old has
