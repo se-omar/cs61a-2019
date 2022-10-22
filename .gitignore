@@ -1,0 +1,12 @@
+.vscode/
+__pycache__/
+.ok_history
+.ok_storage.db
+.idea/
+.ok_storage.bak
+.ok_storage.dat
+.ok_storage.dir
+construct_check.py
+tests/
+ok
+*.ok
