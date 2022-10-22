@@ -116,7 +116,6 @@ def flatten(lst):
     elif type(lst[0]) == list:
         return flatten(lst[0]) + flatten(lst[1:])
     return [lst[0]] + flatten(lst[1:])
-    # return [flatten(x) for x in lst]
 
 def replace_leaf(t, old, new):
     """Returns a new tree where every leaf value equal to old has
@@ -147,7 +146,13 @@ def replace_leaf(t, old, new):
     >>> laerad == yggdrasil # Make sure original tree is unmodified
     True
     """
-    "*** YOUR CODE HERE ***"
+    
+    if is_leaf(t):
+        if label(t) == old:
+            return tree(new)
+        else:
+            return t
+    return tree(label(t), [replace_leaf(b, old, new) for b in branches(t)])
 
 # Mobiles
 
@@ -193,12 +198,12 @@ def end(s):
 def weight(size):
     """Construct a weight of some size."""
     assert size > 0
-    "*** YOUR CODE HERE ***"
+    return ['weight', size]
 
 def size(w):
     """Select the size of a weight."""
     assert is_weight(w), 'must call size on a weight'
-    "*** YOUR CODE HERE ***"
+    return w[1]
 
 def is_weight(w):
     """Whether w is a weight."""
@@ -246,7 +251,9 @@ def balanced(m):
     >>> balanced(mobile(side(1, w), side(1, v)))
     False
     """
-    "*** YOUR CODE HERE ***"
+    if is_weight(m):
+        return True
+    return total_weight(end(left(m))) * length(left(m)) == length(right(m)) * total_weight(end(right(m))) and balanced(end(left(m))) and balanced (end(right(m)))
 
 def totals_tree(m):
     """Return a tree representing the mobile with its total weight at the root.
@@ -273,7 +280,9 @@ def totals_tree(m):
           3
           2
     """
-    "*** YOUR CODE HERE ***"
+    if is_weight(m):
+        return tree(total_weight(m))
+    return tree(total_weight(m), [totals_tree(end(left(m))), totals_tree(end(right(m)))])
 
 ###################
 # Extra Questions #
