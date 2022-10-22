@@ -6,6 +6,7 @@ __pycache__/
 .ok_storage.bak
 .ok_storage.dat
 .ok_storage.dir
+.ok_storage
 construct_check.py
 tests/
 ok
