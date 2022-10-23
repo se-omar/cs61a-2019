@@ -1,5 +1,6 @@
 """ Typing Test implementation """
 
+from tracemalloc import start
 from utils import *
 from ucb import main
 
@@ -48,3 +49,21 @@ def lines_from_file(path):
             lines.append(strip(line))
     close(file)
     return lines
+
+def analyze(sample_paragraph, typed_string, start_time, end_time):
+    delta_time = end_time - start_time
+    pseudo_word_count = len(typed_string) / 5
+    sample_words = sample_paragraph.strip().split()
+    typed_words = typed_string.strip().split()
+    correct_words = 0
+    real_word_count = 0
+    for sample_word, typed_word in zip(sample_words,typed_words):
+        real_word_count += 1
+        if sample_word == typed_word:
+            correct_words += 1
+    if len(typed_words) == 0:
+        accuracy = 0.0
+    else:
+        accuracy = (correct_words / real_word_count) * 100
+
+    return [pseudo_word_count / (delta_time/60), accuracy]
