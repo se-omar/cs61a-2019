@@ -7,7 +7,7 @@ Problem 01: Sample Paragraphs
 
 
 - Which functions from utils.py will you use for interacting with the sample_paragraphs.txt file?
-readable, readline, readlines, close, split, strip
+readable, readline, readlines, close, strip
 
 
 

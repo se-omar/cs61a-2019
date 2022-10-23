@@ -44,10 +44,7 @@ def lines_from_file(path):
     file = open(path)
     lines = []
     if readable(file):
-        file_lines = readlines(file)
-        for line in file_lines:
+        for line in readlines(file):
             lines.append(strip(line))
+    close(file)
     return lines
-
-# for i in range(5):
-#     print(lines_from_file("C:/users/omar/dev/courses/cs61a-2019/projects/typing_test/data/sample_paragraphs.txt")[i])
