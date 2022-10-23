@@ -35,3 +35,19 @@ KEY_DISTANCES = get_key_distances()
 # BEGIN Q7-8
 "*** YOUR CODE HERE ***"
 # END Q7-8
+
+def new_sample(path, i):
+    lines = lines_from_file(path)
+    return lines[i]
+
+def lines_from_file(path):
+    file = open(path)
+    lines = []
+    if readable(file):
+        file_lines = readlines(file)
+        for line in file_lines:
+            lines.append(strip(line))
+    return lines
+
+# for i in range(5):
+#     print(lines_from_file("C:/users/omar/dev/courses/cs61a-2019/projects/typing_test/data/sample_paragraphs.txt")[i])

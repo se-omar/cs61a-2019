@@ -61,16 +61,16 @@ def count_stair_ways(n):
 # a time.
 # Write a function count_k that figures out the number of paths for this scenario. Assume n and k are positive.
 def count_k(n, k):
-"""
->>> count_k(3, 3) # 3, 2 + 1, 1 + 2, 1 + 1 + 1
-4
->>> count_k(4, 4)
-8
->>> count_k(10, 3)
-274
->>> count_k(300, 1) # Only one step at a time
-1
-"""
+    """
+    >>> count_k(3, 3) # 3, 2 + 1, 1 + 2, 1 + 1 + 1
+    4
+    >>> count_k(4, 4)
+    8
+    >>> count_k(10, 3)
+    274
+    >>> count_k(300, 1) # Only one step at a time
+    1
+    """
 
 
 
