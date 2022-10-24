@@ -38,7 +38,7 @@ Problem 03: Pig Latin
 
 
 - How will you identify that a word starts with a consonant cluster? 
-
+loop over the word and add chars to a list until i hit a vowel
 
 
 

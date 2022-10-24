@@ -67,3 +67,26 @@ def analyze(sample_paragraph, typed_string, start_time, end_time):
         accuracy = (correct_words / real_word_count) * 100
 
     return [pseudo_word_count / (delta_time/60), accuracy]
+
+def pig_latin(word):
+    vowels = ['a', 'e', 'i', 'o', 'u']
+    # if word[0] in vowels:
+    #     return word + 'way'
+    const_cluster = ''
+    for chr in word:
+        if chr in vowels:
+            if const_cluster == '':
+                return word + 'way'
+            break
+        const_cluster += chr
+
+    return strip(word, chars=const_cluster) + const_cluster + 'ay'
+
+
+
+
+
+
+
+
+
