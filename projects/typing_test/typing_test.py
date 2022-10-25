@@ -86,13 +86,15 @@ def pig_latin(word):
 def autocorrect(user_input, words_list, score_function):
     if user_input in words_list:
         return user_input
-    min_score = score_function(user_input, words_list[0])
+    min_word = words_list[0]
+    min_score = score_function(user_input, min_word)
     for word in words_list:
         curr_score = score_function(user_input, word)
         if curr_score < min_score:
             min_score = curr_score
+            min_word = word
 
-    return min_score
+    return min_word
 
 
 
