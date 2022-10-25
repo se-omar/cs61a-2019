@@ -12,30 +12,82 @@ from ucb import main
 # Question 6
 
 def score_function(word1, word2):
-    """A score_function that computes the edit distance between word1 and word2."""
-
-    if ______________: # Fill in the condition
+    if not word1: # Fill in the condition
         # BEGIN Q6
-        "*** YOUR CODE HERE ***"
+        return len(word2)
         # END Q6
 
-    elif ___________: # Feel free to remove or add additional cases
+    elif not word2: # Feel free to remove or add additional cases
         # BEGIN Q6
-        "*** YOUR CODE HERE ***"
+        return len(word1)
         # END Q6
-    
+
+    elif word1[0] == word2[0]:
+        return score_function(word1[1:], word2[1:])
+
     else:
-        add_char = ______________  # Fill in these lines
-        remove_char = ______________ 
-        substitute_char = ______________ 
+        add_char = score_function(word1, word2[1:])  # Fill in these lines
+        remove_char = score_function(word1[1:], word2)
+        substitute_char = score_function(word1[1:], word2[1:])
         # BEGIN Q6
-        "*** YOUR CODE HERE ***"
+        return  1 + min(add_char, remove_char, substitute_char)
         # END Q6
 
+def score_function_accurate(word1, word2):
+    if not word1: # Fill in the condition
+        # BEGIN Q6
+        return float(len(word2))
+        # END Q6
+
+    elif not word2: # Feel free to remove or add additional cases
+        # BEGIN Q6
+        return float(len(word1))
+        # END Q6
+
+    elif word1[0] == word2[0]:
+        return score_function_accurate(word1[1:], word2[1:])
+
+    else:
+        add_char = 1.0 + score_function(word1, word2[1:])  # Fill in these lines
+        remove_char = 1.0 + score_function(word1[1:], word2)
+        substitute_char = KEY_DISTANCES[word1[0], word2[0]] + score_function(word1[1:], word2[1:])
+        # BEGIN Q6
+        return  min(add_char, remove_char, substitute_char)
+        # END Q6
 KEY_DISTANCES = get_key_distances()
 
 # BEGIN Q7-8
-"*** YOUR CODE HERE ***"
+def score_function_final(word1, word2):
+    def helper(word1, word2, word_memo={}):
+        if (word1, word2) in word_memo: 
+            return word_memo[word1, word2]
+        if (word2, word1) in word_memo:
+            return word_memo[word2, word1]
+
+        if word1 == word2:
+            return float(0)
+
+        if not word1: # Fill in the condition
+            # BEGIN Q6
+            return float(len(word2))
+            # END Q6
+
+        elif not word2: # Feel free to remove or add additional cases
+            # BEGIN Q6
+            return float(len(word1))
+            # END Q6
+
+        elif word1[0] == word2[0]:
+            return helper(word1[1:], word2[1:], word_memo)
+
+        else:
+            add_char = 1.0 + helper(word1, word2[1:], word_memo)  # Fill in these lines
+            remove_char = 1.0 + helper(word1[1:], word2, word_memo)
+            substitute_char = KEY_DISTANCES[word1[0], word2[0]] + helper(word1[1:], word2[1:], word_memo)
+            curr_score = min(add_char, remove_char, substitute_char)
+            word_memo[word1, word2] = curr_score
+            return curr_score
+    return helper(word1, word2)
 # END Q7-8
 
 def new_sample(path, i):
