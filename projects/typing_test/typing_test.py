@@ -96,6 +96,13 @@ def autocorrect(user_input, words_list, score_function):
 
     return min_word
 
+def swap_score(s1, s2):
+    if not s1 or not s2:
+        return 0
+    elif s1[0] != s2[0]:
+            return 1 + swap_score(s1[1:], s2[1:])
+    else:
+        return swap_score(s1[1:], s2[1:])
 
 
 
