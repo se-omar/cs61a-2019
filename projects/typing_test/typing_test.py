@@ -1,5 +1,6 @@
 """ Typing Test implementation """
 
+from asyncio import current_task
 from tracemalloc import start
 from utils import *
 from ucb import main
@@ -82,6 +83,16 @@ def pig_latin(word):
 
     return strip(word, chars=const_cluster) + const_cluster + 'ay'
 
+def autocorrect(user_input, words_list, score_function):
+    if user_input in words_list:
+        return user_input
+    min_score = score_function(user_input, words_list[0])
+    for word in words_list:
+        curr_score = score_function(user_input, word)
+        if curr_score < min_score:
+            min_score = curr_score
+
+    return min_score
 
 
 
