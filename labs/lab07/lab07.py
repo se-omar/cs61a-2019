@@ -88,9 +88,9 @@ def dict_to_lst(d):
     """
     result = []
     for _ in range(len(d)):
-        pair = min(d.items(), key=______________________)
-        d.pop(_________)
-        _______________________
+        pair = min(d.items(), key=lambda k: k[1])
+        d.pop(pair[0])
+        result.append(pair)
     return result
 
 # Tree ADT
