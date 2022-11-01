@@ -1,5 +1,8 @@
 """ Lab 07: Midterm Review """
 
+from calendar import isleap
+
+
 def paths(m, n):
     """Return the number of paths from one corner of an
     M by N grid to the opposite corner.
@@ -37,7 +40,10 @@ def num_trees(n):
     429
 
     """
-    "*** YOUR CODE HERE ***"
+    if n == 1 or n == 2:
+        return 1
+    else:
+        return num_trees(n - 2) + num_trees(n - 1)
 
 def prune_leaves(t, vals):
     """Return a modified copy of t with all leaves that have a label
@@ -63,7 +69,11 @@ def prune_leaves(t, vals):
         5
       6
     """
-    "*** YOUR CODE HERE ***"
+    if is_leaf(t):
+        if label(t) in vals:
+            return None
+        return t
+    return  tree(label(t), [prune_leaves(b, vals) for b in branches(t) if prune_leaves(b, vals) != None])
 
 def dict_to_lst(d):
     """Returns a list containing all the (key, value) pairs in d as two-element
