@@ -14,7 +14,12 @@ def make_adder_inc(n):
     >>> adder2(5)
     11
     """
-    "*** YOUR CODE HERE ***"
+    y = -1
+    def helper(x):
+        nonlocal y
+        y += 1
+        return x + n + y
+    return helper
 
 def map(fn, lst):
     """Maps fn onto lst using mutation.
