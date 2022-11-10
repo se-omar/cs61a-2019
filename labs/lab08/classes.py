@@ -162,9 +162,11 @@ class TutorCard(Card):
         >>> len(player2.deck.cards) == initial_deck_length - 3
         True
         """
-        "*** YOUR CODE HERE ***"
+        opponent.hand = opponent.hand[3:]
+        for i in range(3):
+            opponent.draw()
         # Uncomment the line below when you've finished implementing this method!
-        # print('{} discarded and re-drew 3 cards!'.format(opponent.name))
+        print('{} discarded and re-drew 3 cards!'.format(opponent.name))
 
     def copy(self):
         """
@@ -189,7 +191,7 @@ class TACard(Card):
         >>> other_card.defense
         300
         """
-        "*** YOUR CODE HERE ***"
+        other_card.attack, other_card.defense = other_card.defense, other_card.attack
 
     def copy(self):
         """
