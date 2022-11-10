@@ -224,9 +224,14 @@ class InstructorCard(Card):
         >>> opponent_card.defense
         300
         """
-        "*** YOUR CODE HERE ***"
+        for card in player.deck.cards:
+            card.attack += 300
+            card.defense += 300
+
+        player.deck.cards.append(other_card.copy())
+        player.hand.append(other_card.copy())
         # Uncomment the line below when you've finished implementing this method!
-        # print('{}\'s card added to {}\'s hand and deck!'.format(opponent.name, player.name))
+        print('{}\'s card added to {}\'s hand and deck!'.format(opponent.name, player.name))
 
     def copy(self):
         """
