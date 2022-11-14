@@ -20,6 +20,7 @@ def paths(m, n):
         return 1
     return paths(m - 1, n) + paths(m, n - 1)
 
+
 def num_trees(n):
     """How many full binary trees have exactly n leaves? E.g.,
 
@@ -44,6 +45,7 @@ def num_trees(n):
         return 1
     else:
         return num_trees(n - 2) + num_trees(n - 1)
+
 
 def prune_leaves(t, vals):
     """Return a modified copy of t with all leaves that have a label
@@ -73,7 +75,11 @@ def prune_leaves(t, vals):
         if label(t) in vals:
             return None
         return t
-    return  tree(label(t), [prune_leaves(b, vals) for b in branches(t) if prune_leaves(b, vals) != None])
+    return tree(
+        label(t),
+        [prune_leaves(b, vals) for b in branches(t) if prune_leaves(b, vals) != None],
+    )
+
 
 def dict_to_lst(d):
     """Returns a list containing all the (key, value) pairs in d as two-element
@@ -93,20 +99,24 @@ def dict_to_lst(d):
         result.append(pair)
     return result
 
+
 # Tree ADT
 def tree(label, branches=[]):
     """Construct a tree with the given label value and a list of branches."""
     for branch in branches:
-        assert is_tree(branch), 'branches must be trees'
+        assert is_tree(branch), "branches must be trees"
     return [label] + list(branches)
+
 
 def label(tree):
     """Return the label value of a tree."""
     return tree[0]
 
+
 def branches(tree):
     """Return the list of branches of the given tree."""
     return tree[1:]
+
 
 def is_tree(tree):
     """Returns True if the given tree is a tree, and False otherwise."""
@@ -117,11 +127,13 @@ def is_tree(tree):
             return False
     return True
 
+
 def is_leaf(tree):
     """Returns True if the given tree's list of branches is empty, and False
     otherwise.
     """
     return not branches(tree)
+
 
 def print_tree(t, indent=0):
     """Print a representation of this tree in which each node is
@@ -142,9 +154,10 @@ def print_tree(t, indent=0):
       6
         7
     """
-    print('  ' * indent + str(label(t)))
+    print("  " * indent + str(label(t)))
     for b in branches(t):
         print_tree(b, indent + 1)
+
 
 def copy_tree(t):
     """Returns a copy of t. Only for testing purposes.
