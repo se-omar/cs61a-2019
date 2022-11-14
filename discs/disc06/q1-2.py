@@ -2,22 +2,27 @@
 # email. Fill in the definitions below to finish the implementation! There are more
 # methods to fill out on the next page.
 
+
 class Email:
     """Every email object has 3 instance attributes: the
     message, the sender name, and the recipient name.
     """
+
     def __init__(self, msg, sender_name, recipient_name):
         self.msg = msg
         self.sender_name = sender_name
         self.recipient_name = recipient_name
+
 
 class Server:
     """Each Server has an instance attribute clients, which
     is a dictionary that associates client names with
     client objects.
     """
+
     def __init__(self):
         self.clients = {}
+
     def send(self, email):
         """Take an email and put it in the inbox of the client
         it is addressed to.
@@ -31,12 +36,14 @@ class Server:
         """
         self.clients[client_name] = client
 
+
 class Client:
     """Every Client has instance attributes name (which is
     used for addressing emails to the client), server
     (which is used to send emails out to other clients), and
     inbox (a list of all emails the client has received).
     """
+
     def __init__(self, server, name):
         self.inbox = []
         self.name = name
