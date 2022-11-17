@@ -141,8 +141,17 @@ def store_digits(n):
     >>> store_digits(876)
     Link(8, Link(7, Link(6)))
     """
-    "*** YOUR CODE HERE ***"
 
+    if n < 10:
+        return Link(n)
+    return Link(int(str(n)[0]), store_digits(int(str(n)[1:])))
+
+def firstDigit(n) :
+
+    while n >= 10:
+        n = n / 10;
+    return int(n)
+    
 def cumulative_sum(t):
     """Mutates t so that each node's label becomes the sum of all labels in
     the corresponding subtree rooted at t.
