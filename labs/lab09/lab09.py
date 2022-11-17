@@ -124,7 +124,11 @@ def link_to_list(link):
     >>> link_to_list(Link.empty)
     []
     """
-    "*** YOUR CODE HERE ***"
+    if link is Link.empty:
+        return []
+    if link.rest is Link.empty:
+        return [link.first]
+    return [link.first] + link_to_list(link.rest)
 
 def store_digits(n):
     """Stores the digits of a positive number n in a linked list.
