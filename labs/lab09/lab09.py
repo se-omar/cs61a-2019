@@ -1,5 +1,6 @@
 """ Lab 9: More OOP, Linked Lists, and Trees """
 
+
 class Link:
     """A linked list.
 
@@ -20,6 +21,7 @@ class Link:
     >>> print(s)                             # Prints str(s)
     <5 7 <8 9>>
     """
+
     empty = ()
 
     def __init__(self, first, rest=empty):
@@ -29,17 +31,18 @@ class Link:
 
     def __repr__(self):
         if self.rest is not Link.empty:
-            rest_repr = ', ' + repr(self.rest)
+            rest_repr = ", " + repr(self.rest)
         else:
-            rest_repr = ''
-        return 'Link(' + repr(self.first) + rest_repr + ')'
+            rest_repr = ""
+        return "Link(" + repr(self.first) + rest_repr + ")"
 
     def __str__(self):
-        string = '<'
+        string = "<"
         while self.rest is not Link.empty:
-            string += str(self.first) + ' '
+            string += str(self.first) + " "
             self = self.rest
-        return string + str(self.first) + '>'
+        return string + str(self.first) + ">"
+
 
 class Tree:
     """
@@ -51,6 +54,7 @@ class Tree:
     >>> t.branches[1].is_leaf()
     True
     """
+
     def __init__(self, label, branches=[]):
         for b in branches:
             assert isinstance(b, Tree)
@@ -102,18 +106,20 @@ class Tree:
 
     def __repr__(self):
         if self.branches:
-            branch_str = ', ' + repr(self.branches)
+            branch_str = ", " + repr(self.branches)
         else:
-            branch_str = ''
-        return 'Tree({0}{1})'.format(self.label, branch_str)
+            branch_str = ""
+        return "Tree({0}{1})".format(self.label, branch_str)
 
     def __str__(self):
         def print_tree(t, indent=0):
-            tree_str = '  ' * indent + str(t.label) + "\n"
+            tree_str = "  " * indent + str(t.label) + "\n"
             for b in t.branches:
                 tree_str += print_tree(b, indent + 1)
             return tree_str
+
         return print_tree(self).rstrip()
+
 
 def link_to_list(link):
     """Takes a linked list and returns a Python list with the same elements.
@@ -129,6 +135,7 @@ def link_to_list(link):
     if link.rest is Link.empty:
         return [link.first]
     return [link.first] + link_to_list(link.rest)
+
 
 def store_digits(n):
     """Stores the digits of a positive number n in a linked list.
@@ -146,12 +153,7 @@ def store_digits(n):
         return Link(n)
     return Link(int(str(n)[0]), store_digits(int(str(n)[1:])))
 
-def firstDigit(n) :
 
-    while n >= 10:
-        n = n / 10;
-    return int(n)
-    
 def cumulative_sum(t):
     """Mutates t so that each node's label becomes the sum of all labels in
     the corresponding subtree rooted at t.
@@ -161,4 +163,4 @@ def cumulative_sum(t):
     >>> t
     Tree(16, [Tree(8, [Tree(5)]), Tree(7)])
     """
-    "*** YOUR CODE HERE ***"
+    return
