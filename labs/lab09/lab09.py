@@ -163,4 +163,12 @@ def cumulative_sum(t):
     >>> t
     Tree(16, [Tree(8, [Tree(5)]), Tree(7)])
     """
-    return
+
+    t.label = sum_under_label(t)
+    for b in t.branches:
+        cumulative_sum(b)
+
+def sum_under_label(t):
+    if t.is_leaf():
+        return t.label
+    return t.label + sum([sum_under_label(b) for b in t.branches])
