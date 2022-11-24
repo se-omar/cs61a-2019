@@ -129,7 +129,12 @@ def has_cycle(link):
     >>> has_cycle(u)
     False
     """
-    "*** YOUR CODE HERE ***"
+    main_link = link
+    while(link is not Link.empty):
+        if link.rest is main_link:
+            return True
+        link = link.rest
+    return False
 
 def has_cycle_constant(link):
     """Return whether link contains a cycle.
@@ -142,7 +147,12 @@ def has_cycle_constant(link):
     >>> has_cycle_constant(t)
     False
     """
-    "*** YOUR CODE HERE ***"
+    main_link = link
+    while(link is not Link.empty):
+        if link.rest is main_link:
+            return True
+        link = link.rest
+    return False
 
 def reverse_other(t):
     """Mutates the tree such that nodes on every other (odd-depth) level
