@@ -18,14 +18,14 @@ def multiply_lnks(lst_of_lnks):
     True
     """
     firsts = 1
-    lnk_of_rests = []
     for lnk in lst_of_lnks:
         if lnk is Link.empty:
             return Link(Link.empty)
-
-    for lnk in lst_of_lnks:
         firsts *= lnk.first
-        lnk_of_rests.append(lnk.rest)
+
+    lnk_of_rests = [lnk.rest for lnk in lst_of_lnks]
+    # for lnk in lst_of_lnks:
+    #     lnk_of_rests.append(lnk.rest)
 
     return Link(firsts, multiply_lnks(lnk_of_rests))
 

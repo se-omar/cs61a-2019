@@ -16,3 +16,5 @@ class Link:
             string += str(self.first) + ' '
             self = self.rest
         return string + str(self.first) + '>'
+
+lnk = Link(Link.empty, Link(1, Link(2)))
