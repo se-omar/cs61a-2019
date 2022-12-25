@@ -1,4 +1,5 @@
 from link import Link
+
 # 1.2 Write a function that takes a sorted linked list of integers and mutates it so that
 # all duplicates are removed.
 def remove_duplicates(lnk):
