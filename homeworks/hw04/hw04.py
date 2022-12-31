@@ -59,7 +59,25 @@ def make_withdraw(balance, password):
     >>> type(w(10, 'l33t')) == str
     True
     """
-    "*** YOUR CODE HERE ***"
+    incorrects = []
+
+    def withdraw(amount, curr_pass):
+        nonlocal password
+        nonlocal balance
+        nonlocal incorrects
+        if len(incorrects) >= 3:
+            return "Your account is locked. Attempts: " + str(incorrects)
+        else:
+            if curr_pass == password:
+                if amount > balance:
+                    return "Insufficient funds"
+                balance = balance - amount
+                return balance
+            else:
+                incorrects.append(curr_pass)
+                return "Incorrect password"
+
+    return withdraw
 
 
 class Mint:
