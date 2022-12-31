@@ -143,7 +143,6 @@ class Nickel(Coin):
 class Dime(Coin):
     cents = 10
 
-
 class VendingMachine:
     """A vending machine that vends some product for some price.
 
@@ -182,7 +181,36 @@ class VendingMachine:
     'Here is your soda.'
     """
 
-    "*** YOUR CODE HERE ***"
+    def __init__(self, vend_type, price):
+        self.vend_type = vend_type
+        self.price = price
+        self.stock = 0
+        self.balance = 0
+
+    def deposit(self, balance):
+        if self.stock == 0:
+            return 'Machine is out of stock. Here is your ${0}.'.format(balance)
+        self.balance += balance
+        return 'Current balance: ${0}'.format(self.balance)
+
+    def restock(self, stock):
+        self.stock += stock
+        return 'Current {0} stock: {1}'.format(self.vend_type, self.stock)
+
+    def vend(self):
+        if self.stock == 0:
+            return 'Machine is out of stock.'
+        if self.balance < self.price:
+            return 'You must deposit ${0} more.'.format(self.price - self.balance)
+        elif self.balance > self.price:
+            self.stock -= 1
+            change = self.balance - self.price
+            self.balance = 0
+            return 'Here is your {0} and ${1} change.'.format(self.vend_type, change)
+        else:
+            self.stock -= 1
+            self.balance -= self.price
+            return 'Here is your {0}.'.format(self.vend_type)
 
 
 def remove_all(link, value):
