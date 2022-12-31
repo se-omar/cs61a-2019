@@ -17,26 +17,18 @@ def make_fib():
     >>> fib() + sum([fib2() for _ in range(5)])
     12
     """
-    curr = 0
+    curr = 1
     prev = 0
-    prev_prev = 0
+
     def fib():
-        nonlocal curr 
-        nonlocal prev 
-        nonlocal prev_prev 
-        if curr == 0:
-            curr = 1
-            return 0
-        elif curr == 1 and prev == 0:
-            prev = 1
-        else:
-            curr = prev + prev_prev
-            prev_prev = prev
-            prev = curr
-        return curr
+        nonlocal curr, prev
+        temp_prev = prev
+        prev = curr
+        curr = curr + temp_prev
+
+        return temp_prev
 
     return fib
-
 
 
 def make_withdraw(balance, password):
