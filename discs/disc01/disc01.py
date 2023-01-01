@@ -11,7 +11,7 @@ def wears_jacket_with_if(temp, raining):
     >>> wears_jacket(100, True)
     True
     """
-    return raining or temp < 60
+    return raining or temp<60
 
 # Write a function that returns True if a positive integer n is a prime number and
 # False otherwise.

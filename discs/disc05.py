@@ -6,7 +6,6 @@ def even_weighted(lst):
     [0, 6, 20]
     """
     return [lst[i] * i for i in range(len(lst)) if i % 2 == 0]
-
 # Write a function that takes in a list and returns the maximum product that can be
 # formed using nonconsecutive elements of the list. The input list will contain only
 # numbers greater than or equal to 1.
