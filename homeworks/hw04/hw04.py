@@ -230,7 +230,13 @@ def remove_all(link, value):
     >>> print(l1)
     <0 1>
     """
-    "*** YOUR CODE HERE ***"
+    if link.rest == Link.empty:
+        return None
+
+    remove_all(link.rest, value)
+    if link.rest.first == value:
+        link.rest = link.rest.rest
+
 
 
 def generate_paths(t, x):
