@@ -240,6 +240,7 @@ def remove_all(link, value):
 
 
 def generate_paths(t, x):
+
     """Yields all possible paths from the root of t to a node with the label x
     as a list.
 
