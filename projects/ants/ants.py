@@ -204,6 +204,8 @@ class ThrowerAnt(Ant):
     implemented = True
     damage = 1
     food_cost = 3
+    min_range = 0
+    max_range = float('inf')
     # ADD/OVERRIDE CLASS ATTRIBUTES HERE
 
     def nearest_bee(self, hive):
@@ -213,13 +215,15 @@ class ThrowerAnt(Ant):
         This method returns None if there is no such Bee (or none in range).
         """
         # BEGIN Problem 3 and 4
+        curr_index = 0
         if self.place != None:
-            currPlace = self.place
-            while currPlace is not hive:
-                if random_or_none(currPlace.bees) == None:
-                    currPlace = currPlace.entrance
-                else:
-                    return random_or_none(currPlace.bees)
+            curr_place = self.place
+            while curr_place is not hive:
+                if curr_index <= self.max_range and curr_index >= self.min_range:
+                    if random_or_none(curr_place.bees) != None:
+                        return random_or_none(curr_place.bees)
+                curr_place = curr_place.entrance
+                curr_index += 1
         # END Problem 3 and 4
 
     def throw_at(self, target):
@@ -242,20 +246,26 @@ def random_or_none(s):
 
 class ShortThrower(ThrowerAnt):
     """A ThrowerAnt that only throws leaves at Bees at most 3 places away."""
-
+    armor = 1
+    food_cost = 2
+    max_range = 3
+    min_range = 0
     name = 'Short'
     # OVERRIDE CLASS ATTRIBUTES HERE
     # BEGIN Problem 4
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
     # END Problem 4
 
 class LongThrower(ThrowerAnt):
     """A ThrowerAnt that only throws leaves at Bees at least 5 places away."""
-
+    armor = 1
+    food_cost = 2
+    max_range = float('inf')
+    min_range = 5
     name = 'Long'
     # OVERRIDE CLASS ATTRIBUTES HERE
     # BEGIN Problem 4
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
     # END Problem 4
 
 class FireAnt(Ant):
