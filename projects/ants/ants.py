@@ -288,7 +288,7 @@ class FireAnt(Ant):
         # BEGIN Problem 5
         self.armor -= amount
         if self.armor <= 0 and self.place != None:
-            bees = self.place.bees.copy()
+            bees = list(self.place.bees)
             for bee in bees:
                 bee.reduce_armor(self.damage)
             self.place.remove_insect(self)
