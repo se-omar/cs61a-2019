@@ -272,10 +272,12 @@ class FireAnt(Ant):
     """FireAnt cooks any Bee in its Place when it expires."""
 
     name = 'Fire'
+    food_cost = 5
     damage = 3
+    armor = 1
     # OVERRIDE CLASS ATTRIBUTES HERE
     # BEGIN Problem 5
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
     # END Problem 5
 
     def reduce_armor(self, amount):
@@ -284,7 +286,14 @@ class FireAnt(Ant):
         the current place.
         """
         # BEGIN Problem 5
-        "*** YOUR CODE HERE ***"
+        self.armor -= amount
+        if self.armor <= 0 and self.place != None:
+            bees = self.place.bees.copy()
+            for bee in bees:
+                bee.reduce_armor(self.damage)
+            self.place.remove_insect(self)
+
+
         # END Problem 5
 
 class HungryAnt(Ant):
