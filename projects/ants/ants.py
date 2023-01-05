@@ -301,6 +301,9 @@ class HungryAnt(Ant):
     While digesting, the HungryAnt can't eat another Bee.
     """
     name = 'Hungry'
+    time_to_digest = 3
+    food_cost = 4
+    armor = 1
     # OVERRIDE CLASS ATTRIBUTES HERE
     # BEGIN Problem 6
     implemented = False   # Change to True to view in the GUI
@@ -308,17 +311,23 @@ class HungryAnt(Ant):
 
     def __init__(self, armor=1):
         # BEGIN Problem 6
-        "*** YOUR CODE HERE ***"
+        self.digesting = 0
+        self.armor = armor
         # END Problem 6
 
     def eat_bee(self, bee):
         # BEGIN Problem 6
-        "*** YOUR CODE HERE ***"
+        if bee != None:
+            bee.reduce_armor(bee.armor)
+            self.digesting = self.time_to_digest
         # END Problem 6
 
     def action(self, colony):
         # BEGIN Problem 6
-        "*** YOUR CODE HERE ***"
+        if self.digesting > 0:
+            self.digesting -= 1
+        else:
+            self.eat_bee(random_or_none(self.place.bees))
         # END Problem 6
 
 class NinjaAnt(Ant):
