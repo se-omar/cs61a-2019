@@ -40,6 +40,11 @@ class Place(object):
         if insect.is_ant:
             if self.ant is None:
                 self.ant = insect
+            elif self.ant.is_container and self.ant.contained_ant == None and not insect.is_container:
+                self.ant.contained_ant = insect
+            elif not self.ant.is_container and insect.is_container and insect.contained_ant == None:
+                insect.contained_ant = self.ant
+                self.ant = insect
             else:
                 # BEGIN Problem 9
                 assert self.ant is None, 'Two ants in {0}'.format(self)
@@ -170,6 +175,7 @@ class Ant(Insect):
     """An Ant occupies a place and does work for the colony."""
 
     is_ant = True
+    is_container = False
     implemented = False  # Only implemented Ant classes should be instantiated
     food_cost = 0
     blocks_path = True
@@ -371,7 +377,9 @@ class BodyguardAnt(Ant):
     name = 'Bodyguard'
     # OVERRIDE CLASS ATTRIBUTES HERE
     # BEGIN Problem 9
-    implemented = False   # Change to True to view in the GUI
+    is_container = True
+    implemented = True   # Change to True to view in the GUI
+    food_cost = 4
     # END Problem 9
 
     def __init__(self, armor=2):
@@ -380,17 +388,20 @@ class BodyguardAnt(Ant):
 
     def can_contain(self, other):
         # BEGIN Problem 9
-        "*** YOUR CODE HERE ***"
+        if self.contained_ant == None and other.is_container == False:
+            return True
+        return False
         # END Problem 9
 
     def contain_ant(self, ant):
         # BEGIN Problem 9
-        "*** YOUR CODE HERE ***"
+        self.contain_ant = ant
         # END Problem 9
 
     def action(self, colony):
         # BEGIN Problem 9
-        "*** YOUR CODE HERE ***"
+        if self.contained_ant != None:
+            self.contained_ant.action(colony)
         # END Problem 9
 
 class TankAnt(BodyguardAnt):
