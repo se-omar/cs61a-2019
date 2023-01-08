@@ -66,7 +66,9 @@ class Place(object):
         if insect.is_ant:
             # Special handling for QueenAnt
             # BEGIN Problem 13
-            "*** YOUR CODE HERE ***"
+            if isinstance(insect, QueenAnt) and insect.is_true:
+                print("DEBUG: here", insect)
+                return
             # END Problem 13
 
             # Special handling for container ants
@@ -178,6 +180,7 @@ class Ant(Insect):
 
     is_ant = True
     is_container = False
+    is_buffed = False
     implemented = False  # Only implemented Ant classes should be instantiated
     food_cost = 0
     blocks_path = True
@@ -447,19 +450,25 @@ class ScubaThrower(ThrowerAnt):
 # END Problem 12
 
 # BEGIN Problem 13
-class QueenAnt(Ant):  # You should change this line
+class QueenAnt(ScubaThrower):  # You should change this line
 # END Problem 13
     """The Queen of the colony. The game is over if a bee enters her place."""
 
     name = 'Queen'
     # OVERRIDE CLASS ATTRIBUTES HERE
     # BEGIN Problem 13
-    implemented = False   # Change to True to view in the GUI
+    food_cost = 7
+    implemented = True   # Change to True to view in the GUI
+    is_imposter = False
     # END Problem 13
 
     def __init__(self, armor=1):
         # BEGIN Problem 13
-        "*** YOUR CODE HERE ***"
+        self.is_true = False
+        self.armor = armor
+        if not QueenAnt.is_imposter:
+            self.is_true = True
+            QueenAnt.is_imposter = True
         # END Problem 13
 
     def action(self, colony):
@@ -469,7 +478,23 @@ class QueenAnt(Ant):  # You should change this line
         Impostor queens do only one thing: reduce their own armor to 0.
         """
         # BEGIN Problem 13
-        "*** YOUR CODE HERE ***"
+        if self.is_true:
+            ScubaThrower.action(self, colony)
+
+            curr_place = self.place.exit
+            while curr_place is not None:
+                if curr_place.ant != None:
+                    if isinstance(curr_place.ant, BodyguardAnt) and curr_place.ant.contained_ant != None:
+                        if not curr_place.ant.contained_ant.is_buffed:
+                            curr_place.ant.contained_ant.damage *= 2
+                            curr_place.ant.contained_ant.is_buffed = True
+                    if not curr_place.ant.is_buffed:
+                        curr_place.ant.damage *= 2
+                        curr_place.ant.is_buffed = True
+
+                curr_place = curr_place.exit
+        else:
+            self.reduce_armor(self.armor)
         # END Problem 13
 
     def reduce_armor(self, amount):
@@ -477,7 +502,13 @@ class QueenAnt(Ant):  # You should change this line
         remaining, signal the end of the game.
         """
         # BEGIN Problem 13
-        "*** YOUR CODE HERE ***"
+        # ScubaThrower.reduce_armor(self, amount)
+        self.armor -= amount
+        if self.armor <= 0:
+            if self.is_true:
+                bees_win()
+            else:
+                self.place.remove_insect(self)
         # END Problem 13
 
 class AntRemover(Ant):
