@@ -32,7 +32,7 @@ class Place(object):
         """Add an Insect to this Place.
 
         There can be at most one Ant in a Place, unless exactly one of them is
-        a container ant (Problem 9), in which case there can be two. If add_insect
+       a container ant (Problem 9), in which case there can be two. If add_insect
         tries to add more Ants than is allowed, an assertion error is raised.
 
         There can be any number of Bees in a Place.
@@ -531,7 +531,6 @@ def make_slow(action, bee):
     action -- An action method of some Bee
     """
     # BEGIN Problem EC
-    "*** YOUR CODE HERE ***"
     # END Problem EC
 
 def make_scare(action, bee):
@@ -555,7 +554,7 @@ class SlowThrower(ThrowerAnt):
 
     name = 'Slow'
     # BEGIN Problem EC
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
     # END Problem EC
 
     def throw_at(self, target):
