@@ -48,7 +48,9 @@
 
 
 (define (sub-all s olds news)
-  'YOUR-CODE-HERE
+  (cond
+    ((null? s) '())
+  )
 )
 
 
