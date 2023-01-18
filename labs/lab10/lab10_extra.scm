@@ -2,7 +2,7 @@
 
 
 (define lst
-  'YOUR-CODE-HERE
+  (cons (cons 1 '()) (cons 2 (cons (cons 3 (cons 4 '())) (cons 5 '()))))
 )
 
 (define (composed f g)
