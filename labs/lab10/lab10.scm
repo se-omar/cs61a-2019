@@ -17,7 +17,15 @@
 ; expect 0
 
 (define (filter-lst f lst)
-  'YOUR-CODE-HERE
+  (cond
+      ((null? lst) '())
+
+      (
+       (f (car lst))
+       (cons (car lst) (filter-lst f (cdr lst)))
+      )
+
+       (else (filter-lst f (cdr lst))))
 )
 
 ;;; Tests
