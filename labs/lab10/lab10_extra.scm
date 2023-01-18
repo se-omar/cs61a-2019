@@ -10,7 +10,18 @@
 )
 
 (define (remove item lst)
-  'YOUR-CODE-HERE
+  (cond
+      ((null? lst) '())
+
+      (
+       (= (car lst) item)
+          (remove item (cdr lst))
+      )
+
+       (else
+          (cons (car lst) (remove item (cdr lst)))
+       )
+  )
 )
 
 
@@ -34,3 +45,17 @@
 (define (sub-all s olds news)
   'YOUR-CODE-HERE
 )
+
+
+(define (filter-lst f lst)
+  (cond
+      ((null? lst) '())
+
+      (
+       (f (car lst))
+       (cons (car lst) (filter-lst f (cdr lst)))
+      )
+
+       (else (filter-lst f (cdr lst))))
+)
+
