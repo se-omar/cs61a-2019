@@ -17,6 +17,7 @@ if __name__ == '__main__':
     read_only = len(sys.argv) == 2 and sys.argv[1] == '--read'
 
     while True:
+
         try:
             # `input` prints the prompt, waits, and returns the user's input.
             user_input = input('> ')
