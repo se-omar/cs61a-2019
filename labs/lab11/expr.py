@@ -109,7 +109,10 @@ class Name(Expr):
         ...     print('Exception raised!')
         Exception raised!
         """
-        "*** YOUR CODE HERE ***"
+        if env.get(self.string):
+            return env[self.string]
+        else:
+            raise NameError('The name does not exist')
 
     def __str__(self):
         return self.string
