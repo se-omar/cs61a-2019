@@ -180,7 +180,6 @@ class CallExpr(Expr):
         """
         fun = self.operator.eval(env)
         evaled_operands = []
-
         for operand in self.operands:
             evaled_operands.append(operand.eval(env))
 
