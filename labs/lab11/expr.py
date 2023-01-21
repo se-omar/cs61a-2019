@@ -178,7 +178,14 @@ class CallExpr(Expr):
         >>> read('add(mul(3, 4), b)').eval(new_env)
         Number(14)
         """
-        "*** YOUR CODE HERE ***"
+        fun = self.operator.eval(env)
+        evaled_operands = []
+
+        for operand in self.operands:
+            evaled_operands.append(operand.eval(env))
+
+        return fun.apply(evaled_operands)
+
 
     def __str__(self):
         function = str(self.operator)
