@@ -19,6 +19,8 @@ def scheme_eval(expr, env, _=None): # Optional third argument is ignored
     >>> scheme_eval(expr, create_global_frame())
     4
     """
+    def eval_helper(expr):
+        return scheme_eval(expr, env)
     # Evaluate atoms
     if scheme_symbolp(expr):
         return env.lookup(expr)
@@ -33,7 +35,12 @@ def scheme_eval(expr, env, _=None): # Optional third argument is ignored
         return SPECIAL_FORMS[first](rest, env)
     else:
         # BEGIN PROBLEM 5
-        "*** YOUR CODE HERE ***"
+        print("DEBUG: first", first)
+        operator = scheme_eval(first, env)
+        check_procedure(operator)
+        print("DEBUG: rest", rest)
+        operands = rest.map(eval_helper)
+        return scheme_apply(operator, operands, env)
         # END PROBLEM 5
 
 def self_evaluating(expr):
