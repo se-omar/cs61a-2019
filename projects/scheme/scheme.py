@@ -35,10 +35,8 @@ def scheme_eval(expr, env, _=None): # Optional third argument is ignored
         return SPECIAL_FORMS[first](rest, env)
     else:
         # BEGIN PROBLEM 5
-        print("DEBUG: first", first)
         operator = scheme_eval(first, env)
         check_procedure(operator)
-        print("DEBUG: rest", rest)
         operands = rest.map(eval_helper)
         return scheme_apply(operator, operands, env)
         # END PROBLEM 5
