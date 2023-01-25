@@ -333,7 +333,6 @@ def do_cond_form(expressions, env):
             test = True
             if expressions.second != nil:
                 raise SchemeError("else must be last")
-            # return scheme_eval(clause.second, env)
         else:
             test = scheme_eval(clause.first, env)
         if scheme_truep(test):
@@ -359,9 +358,17 @@ def make_let_frame(bindings, env):
     list in a let expression: each item must be a list containing a symbol
     and a Scheme expression."""
     if not scheme_listp(bindings):
-        raise SchemeError("bad bindings list in let form")
+        raise SchemeError('bad bindings list in let form')
     # BEGIN PROBLEM 15
-    "*** YOUR CODE HERE ***"
+    formals, vals = nil, nil
+    while bindings is not nil:
+        check_form(bindings.first, 2, 2)
+        val = scheme_eval(bindings.first.second.first, env)  # Evaluate expressions in this env first
+        formals = Pair(bindings.first.first, formals)
+        check_formals(formals)  # Check formals
+        vals = Pair(val, vals)
+        bindings = bindings.second
+    return env.make_child_frame(formals, vals)
     # END PROBLEM 15
 
 
