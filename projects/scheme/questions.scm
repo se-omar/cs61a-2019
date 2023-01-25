@@ -9,8 +9,10 @@
 ;; Returns a list of two-element lists
 (define (enumerate s)
   ; BEGIN PROBLEM 17
-  'replace-this-line
+  (define (helper s i)
+    (if ((eq? s null)) )
   )
+)
   ; END PROBLEM 17
 
 ;; Problem 18
