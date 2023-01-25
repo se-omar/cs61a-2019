@@ -327,17 +327,22 @@ def do_cond_form(expressions, env):
     """Evaluate a cond form."""
     while expressions is not nil:
         clause = expressions.first
+        print("DEBUG: ", clause)
         check_form(clause, 1)
         if clause.first == "else":
             test = True
             if expressions.second != nil:
                 raise SchemeError("else must be last")
+            # return scheme_eval(clause.second, env)
         else:
             test = scheme_eval(clause.first, env)
         if scheme_truep(test):
             # BEGIN PROBLEM 14
-            "*** YOUR CODE HERE ***"
+            if clause.second is not nil:
+                return eval_all(clause.second, env)
+            return test
             # END PROBLEM 14
+            
         expressions = expressions.second
 
 
