@@ -46,7 +46,9 @@ CREATE TABLE siblings AS
 
 -- Sentences about siblings that are the same size
 CREATE TABLE sentences AS
-  SELECT "REPLACE THIS LINE WITH YOUR SOLUTION";
+  SELECT a.name || " and " || b.name || " are standard siblings"
+  from dogs as a, dogs as b
+  where a.size = b.size and a.name <> b.name;
 
 -- Total size for each fur type where all of the heights differ by no more than 30% from the average height
 CREATE TABLE low_variance AS
