@@ -1,7 +1,7 @@
 .read su19data.sql
 
 CREATE TABLE obedience AS
-  SELECT "REPLACE THIS LINE WITH YOUR SOLUTION";
+  SELECT seven, instructor from students;
 
 CREATE TABLE smallest_int AS
   SELECT "REPLACE THIS LINE WITH YOUR SOLUTION";
